@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title>Attendance Log</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/attendance.css') }}">
+		<meta http-equiv="refresh" content="10">   
+	</head>
+	<body>
+		<h1 class="outer-text center">Attendance Log</h1>
+		<h3 class='outer-text center'>viewing log {{end}} to {{end + 30}}</h3>
+		<div>
+			<table class="center">
+				<tr>
+					<th>student ID</th>
+					<th>Time</th>
+					<th>Name</th>
+				</tr>
+				{% for log in logList %}
+				<tr>
+					<td>{{log.ID}}</td>
+					<td>{{log.time}}</td>
+					<td>{{log.name}}</td>
+				</tr>
+			{% endfor %}
+			</table>
+			<div class="center pageArrowDiv">
+				{% if page == 1 %}
+					<a id='arrow' href = "#" = >⋘</a>
+					<a id='arrow' href = "{{ url_for('attendance', page = page + 1)}}">⋙</a>
+				{% else %}
+					<a id='arrow' href = "{{ url_for('attendance', page = page - 1)}}">⋘</a>
+					<a id='arrow' href = "{{ url_for('attendance', page = page + 1)}}">⋙</a>
+				{% endif %}
+			</div>
+		</div>
+	</body>
+</html>
